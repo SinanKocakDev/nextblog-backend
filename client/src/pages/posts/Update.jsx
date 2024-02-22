@@ -25,11 +25,14 @@ const Update = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
 
-    try {
+    try {     
       // Update a post
       const data = await updatePost(state._id, title, body);
+      // Exclude the old version of updated post from post context
+      // So that there is no duplication of post with same _id
+      const updatedPosts = posts.filter((post) => post._id !== state._id);
       // Update the posts state
-      setPosts([...posts, data.post]);
+      setPosts([...updatedPosts, data.post]);
       // Navigate to dashboard
       navigate("/dashboard");
     } catch (error) {
