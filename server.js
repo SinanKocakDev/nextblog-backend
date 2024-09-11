@@ -3,13 +3,6 @@ import mongoose from "mongoose";
 import { postsRoutes } from "./routes/postsRoutes.js";
 import { usersRoutes } from "./routes/usersRoutes.js";
 
-import path from "path";
-import { fileURLToPath } from "url";
-
-// Resolving dirname for ES module
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 // Initializing Express app
 const app = express();
 
@@ -19,14 +12,6 @@ app.use(express.json());
 // Adding the API end-points and the route handlers
 app.use("/api/posts", postsRoutes);
 app.use("/api/users", usersRoutes);
-
-// Use the client app
-app.use(express.static(path.join(__dirname, "/client/dist")));
-
-// Render client for any path
-app.get("*", (req, res) =>
-  res.sendFile(path.join(__dirname, "/client/dist/index.html"))
-);
 
 // Connecting to MongoDB using Mongoose
 mongoose
