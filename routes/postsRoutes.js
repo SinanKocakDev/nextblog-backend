@@ -1,6 +1,7 @@
 import express from "express";
 import {
   getPosts,
+  getAPosts,
   getUserPosts,
   addPost,
   deletePost,
@@ -13,6 +14,8 @@ const router = express.Router();
 
 // Get all posts route
 router.get("/", getPosts);
+
+router.get("/:id", getAPosts);
 
 // Get user's posts route
 router.get("/user", auth, getUserPosts);

@@ -13,6 +13,21 @@ const getPosts = async (req, res) => {
   }
 };
 
+const getAPosts = async (req, res) => {
+  try {
+
+    const id = req.params.id
+
+    // Grab all the posts from DB
+    const posts = await Post.findById(id)
+    res.status(200).json({ posts });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+
 /************************************ Get User's Posts ************************************/
 const getUserPosts = async (req, res) => {
   // Grab the authenticated user from request object
@@ -113,4 +128,4 @@ const updatePost = async (req, res) => {
   }
 };
 
-export { getPosts, getUserPosts, addPost, deletePost, updatePost };
+export { getPosts, getAPosts, getUserPosts, addPost, deletePost, updatePost };
