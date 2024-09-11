@@ -13,6 +13,10 @@ app.use(express.json());
 app.use("/api/posts", postsRoutes);
 app.use("/api/users", usersRoutes);
 
+app.get("/", (req,res)=>{
+  res.send("hello api")
+})
+
 // Connecting to MongoDB using Mongoose
 mongoose
   .connect(process.env.DB_URI, { dbName: "demo_db" })
