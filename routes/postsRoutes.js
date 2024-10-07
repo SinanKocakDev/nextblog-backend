@@ -21,7 +21,7 @@ router.get("/:id", getAPosts);
 router.get("/user", auth, getUserPosts);
 
 // Add new post route
-router.post("/", auth, addPost);
+router.post("/", addPost);
 
 // Delete post route
 router.delete("/:id", auth, deletePost);
